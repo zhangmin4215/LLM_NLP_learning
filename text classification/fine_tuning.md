@@ -23,7 +23,16 @@
 ### 导入预训练模型
 
  ```tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")```
+ 
+ <img width="728" alt="截屏2025-03-16 18 02 03" src="https://github.com/user-attachments/assets/a2a5a22c-43d1-4087-8fa8-8ac212d4deb2" />
 
 ### 预处理函数
 
  ```def tokenize_function(examples): return tokenizer(examples["text"], padding="max_length", truncation=True)```
+
+ ### 使用Datasets的map方法将预处理函数应用于整个数据集
+
+ ```tokenized_datasets = dataset.map(tokenize_function, batched=True)```
+
+ <img width="725" alt="截屏2025-03-16 18 02 40" src="https://github.com/user-attachments/assets/a57f8b3e-0f4b-4fc6-aa61-f24b325a8e92" />
+
