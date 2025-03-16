@@ -36,3 +36,8 @@
 
  <img width="725" alt="截屏2025-03-16 18 02 40" src="https://github.com/user-attachments/assets/a57f8b3e-0f4b-4fc6-aa61-f24b325a8e92" />
 
+### 创建一个较小的完整数据集子集来进行微调，以减少所需时间
+
+```small_train_dataset = tokenized_datasets["train"].shuffle(seed=42).select(range(1000))```
+
+```small_test_dataset = tokenized_datasets["test"].shuffle(seed=42).select(range(1000))```
