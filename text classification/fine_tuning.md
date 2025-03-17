@@ -20,7 +20,7 @@
 
  ```from transformers import AutoTokenizer```
 
-### 导入预训练模型
+### 导入分词器模型
 
  ```tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")```
  
