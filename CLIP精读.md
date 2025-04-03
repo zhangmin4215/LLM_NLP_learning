@@ -41,4 +41,11 @@ V100 GPUs
 * 你感兴趣的标签(plane/car/dog/bird)，这四个词通过prompt engeering就会变成一个句子(A photo of a {object})，四个单词就变成四个句子。通过文本编码器，得到四个文本的特征T1、T2、T3、TN
 * 拿四个文本特征和一个图像特征计算cosine similarity，最后得到的相似度会通过一层softmax得到概率分布。
 
+3.1.4 PROMPT ENGINEERING AND ENSEMBLING提示工程与模型集成
+* 一个常见的问题是一词多义
+* 我们在预训练数据中还发现一个现象：图像所配的文本很少是单个单词
+* 为了解决这种数据分布差异，我们发现一个很管用的默认模版( prompt template)："A photo of a {label}."（这个固定句式能明确提示文本需要描述图片内容）
+* 对于动物数据集，可以设置提示模版：A photo of a {label}, a type of pet.
+* 在OCR任务中，我们发现：给需要识别的文字或数字加上引号，就能显著提升识别准确率。
+* 多用提示模版(80个)做多次推理，最后把结果综合起来。Prompt ensembling
 
