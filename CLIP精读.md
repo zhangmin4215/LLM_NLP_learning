@@ -34,3 +34,11 @@ V100 GPUs
 3.1 Zero-Shot Transfer  
 当前无监督学习领域的研究大多聚焦于机器学习系统的特征提取能力(representation learning)[下游任务还是需要标签进行微调]，而我们的研究则另辟蹊径——通过测试系统的零样本迁移能力，来评估其真正的任务学习能力[用文本作为引导，灵活地做zero shot的迁移学习，在分类任务上效果特别好]。
 
+3.2 使用CLIP进行ZERO-SHOT推理  
+![image](https://github.com/user-attachments/assets/7d97df87-7a04-40e4-94d1-12a691559f4a)
+* CLIP预训练好后，有两个编码器：image encoder和text encoder
+* 任意给定一张照片，通过图片编码器会得到一个图片的特征I1
+* 你感兴趣的标签(plane/car/dog/bird)，这四个词通过prompt engeering就会变成一个句子(A photo of a {object})，四个单词就变成四个句子。通过文本编码器，得到四个文本的特征T1、T2、T3、TN
+* 拿四个文本特征和一个图像特征计算cosine similarity，最后得到的相似度会通过一层softmax得到概率分布。
+
+
