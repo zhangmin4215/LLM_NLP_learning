@@ -11,3 +11,18 @@ Swin Transformer: Hierarchical Vision Transformer using Shifted Windows
 * 提出的Swin Transformer通过深层合并图像块（如灰色区域所示），构建分层特征图。由于自注意力计算仅在各局部窗口内进行（如红色区域所示），其计算复杂度与输入图像尺寸呈线性关系。因此，该模型可作为通用骨干网络，同时适用于图像分类和密集预测任务。
 * 卷积神经网络通过pooling池化(文中的类似操作是patch merging)得到多尺度的特征，能增大每个卷积核看到的感受野
 * 一旦有了多尺寸的特征信息，输给一个FPN就可以做检测任务；输给一个UNet，就可以做分割任务
+
+![image](https://github.com/user-attachments/assets/677f957c-ef28-4987-b0c0-70711501a17a)
+* 左图向右下移动2个patch得到右图
+* 在第l层（左图）中，采用常规的窗口划分策略，自注意力计算仅在每个窗口内部进行。而在相邻的l+1层（右图）中，窗口划分发生偏移，形成新的窗口区域。此时新窗口的自注意力计算将跨越前一层（l层）的窗口边界，从而建立跨窗口的连接机制。
+
+3.方法  
+3.1整体架构  
+![image](https://github.com/user-attachments/assets/dfaa3ceb-8432-4b2f-9418-0ff3f690378e)
+Patch partition：将图像分块
+
+![image](https://github.com/user-attachments/assets/f7695219-d8c4-4247-ade6-a0ffdc69e110)
+Patch merging  
+第一张图：每隔一个像素点选择一个  
+第3张-->第4张：使用1x1卷积核  
+
