@@ -7,3 +7,9 @@
 * 在中等规模数据集（如ImageNet）上训练时，若未采用强正则化(strong regularization)措施，这些模型的准确率会略低于同等规模的ResNet模型，差距约为几个百分点。
 * Transformer 不像 CNN 那样天生具备“局部感知(locality)”和“平移不变性(translation equivariance)”等特性【一种先验知识，或者一种我们提前做好的假设】，所以在训练数据不够多的时候，它的表现就不如 CNN 那么好。（用更直白的语言解释：CNN 的设计让它更容易学会识别图像中的局部特征，比如边缘、纹理等，而 Transformer 需要更多数据才能达到同样的效果。如果数据量不足，Transformer 的表现就会差一些。）
 * 卷积网络有2种归纳偏置：locality(图片上相邻的区域会有相邻的特征)；平移等变性[ f(g(x)) = g(f(x)) ]，无论先做g函数还是f函数，结果都是不变的，f可以理解为卷积，g可以理解为平移。
+
+3.方法  
+3.1ViT  
+给定一张图，分成很多个patch。将这些patch变成一个序列。每个patch会通过一个线性投射层的操作，得到一个特征(patch embedding)。再加上position embedding位置编码。  
+整个token既包含原本有的图像信息，又包含这个图像块的所在位置信息。将token输入给transformer encoder。  
+根据Class embedding的输出，做最后的判断。MLP Head通用的分类头，最后用交叉熵函数去做模型的训练。  
