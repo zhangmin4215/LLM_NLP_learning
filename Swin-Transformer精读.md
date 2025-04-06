@@ -26,3 +26,6 @@ Patch merging
 第一张图：每隔一个像素点选择一个  
 第3张-->第4张：使用1x1卷积核  
 
+3.2基于自注意力的移动窗口
+![image](https://github.com/user-attachments/assets/5ec2011c-4f9b-4a14-b6b2-bba928a9c238)
+Transformer block安排：做一次基于窗口的多头自注意力，再做一次基于移动窗口的多头自注意力。达到窗口和窗口之间的互相通信
