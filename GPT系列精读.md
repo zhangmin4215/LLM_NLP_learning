@@ -19,4 +19,10 @@
 在实验中，我们采用基于多层Transformer解码器的语言模型（该架构是Transformer的一种变体）。该模型首先对输入上下文词元(input context tokens)执行多头自注意力运算，再通过逐位置前馈层(position-wise feedforward layers)处理，最终生成目标词元的输出概率分布。
 【transformer有一个编码器和一个解码器，编码器对第i个元素抽特征时能看到整个序列里所有的元素；解码器有掩码的存在，在对第i个元素抽特征时，只能看到当前元素和它之前的元素，它后面的元素通过一个掩码使得在计算注意力机制的时候变为0】
 ![image](https://github.com/user-attachments/assets/c28b20ae-4d2e-411a-87db-cdb6f7598c1e)
+如果要预测u这个词的概率P(u)，把这个词前面的词拿出来U = (u−k ,...,u−1) 。  
+UWe: 做词嵌入的投影；+Wp：再加上一个位置信息的编码，得到第一层的输入  
+接下来要做n层transformer块，每一层把上一层的输出拿进来然后得出输出。transformer块不会改变输出输出的形状  
+
+* BERT和GPT的区别
+![image](https://github.com/user-attachments/assets/ee87edff-366d-477d-93e7-a132b9bc11b6)
 
