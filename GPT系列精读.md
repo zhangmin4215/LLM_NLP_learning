@@ -26,3 +26,22 @@ UWe: 做词嵌入的投影；+Wp：再加上一个位置信息的编码，得到
 * BERT和GPT的区别
 ![image](https://github.com/user-attachments/assets/ee87edff-366d-477d-93e7-a132b9bc11b6)
 
+3.2监督微调  
+假设存在标注数据集C，其中每个样本包含输入词元序列(x₁,...,xₘ)及对应标签y。输入序列经由预训练模型处理后，获取最终Transformer模块的激活输出hₗᵐ，该输出将被馈入新增的线性输出层（参数为W_y）进行标签y的预测。  
+![image](https://github.com/user-attachments/assets/fbf4d343-066a-41db-ab46-10b06c1eecad)
+
+这使我们得到以下需要最大化的目标函数：
+![image](https://github.com/user-attachments/assets/98fe57ef-d060-4a74-a736-ef5d5a9cc094)
+
+微调时有2个目标函数：  
+![image](https://github.com/user-attachments/assets/c98c0064-32db-4064-9d31-63ea46c8a2a2)
+
+第一个目标函数：给你这些序列，然后预测序列的下一个词；第二个目标函数：给你完整的序列，让你预测序列对应的标号
+
+* GPT在不同任务上的微调
+![image](https://github.com/user-attachments/assets/358c787f-0855-4dbd-a2a4-096d8f68f2da)
+
+将所有结构化输入均转换为词元序列(token sequences)，经由预训练模型处理后，接入一个线性层+softmax层的组合结构。
+
+
+
